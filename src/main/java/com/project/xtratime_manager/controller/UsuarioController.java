@@ -4,10 +4,9 @@ import com.project.xtratime_manager.model.Usuario;
 import com.project.xtratime_manager.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/usuario")
@@ -22,4 +21,8 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario).getBody();
     }
 
+    @GetMapping
+    public List<Usuario> findAll() {
+        return this.usuarioService.findAll();
+    }
 }
