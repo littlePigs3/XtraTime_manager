@@ -17,12 +17,13 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_usuario", unique = true)
+    @Column(unique = true)
     private Long idUsuario;
 
-    @Column(nullable = false, name = "nm_usuario")
+    @Column(nullable = false)
     private String nmUsuario;
 
-    @Column(nullable = false, name = "nm_senha")
+    @Column(nullable = false)
     private String nmSenha;
+
 }

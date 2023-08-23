@@ -21,6 +21,12 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario).getBody();
     }
 
+    @PutMapping(path = "{/id}")
+    public Usuario atualizar(@PathVariable("id") Long id, @RequestBody Usuario usuarioAtualizado){
+        this.usuarioService.atualizar(usuarioAtualizado, id);
+        return ResponseEntity.ok(usuarioAtualizado).getBody();
+    }
+
     @GetMapping
     public List<Usuario> findAll() {
         return this.usuarioService.findAll();

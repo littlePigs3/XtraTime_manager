@@ -17,6 +17,19 @@ public class UsuarioService {
         return this.usuarioRepository.save(usuario);
     }
 
+    public Usuario atualizar(Usuario usuarioAtualizado, Long id) {
+        Usuario usuario = this.usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario não encontrado com id: " + id));
+        return this.usuarioRepository.save(this.popularUsuario(usuarioAtualizado, usuario));
+    }
+
+    private Usuario popularUsuario(Usuario usuarioAtualizado, Usuario usuario) {
+        usuario.setIdUsuario(usuarioAtualizado.getIdUsuario());
+        usuario.setNmUsuario(usuarioAtualizado.getNmUsuario());
+        usuario.setNmUsuario(usuario.getNmUsuario());
+        return usuario;
+    }
+
     public List<Usuario> findAll() {return  this.usuarioRepository.findAll();}
 
 }
