@@ -3,12 +3,15 @@ package com.project.xtratime_manager.service;
 import com.project.xtratime_manager.model.Usuario;
 import com.project.xtratime_manager.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -25,11 +28,15 @@ public class UsuarioService {
 
     private Usuario popularUsuario(Usuario usuarioAtualizado, Usuario usuario) {
         usuario.setIdUsuario(usuarioAtualizado.getIdUsuario());
-        usuario.setNmUsuario(usuarioAtualizado.getNmUsuario());
-        usuario.setNmUsuario(usuario.getNmUsuario());
+        usuario.setNmSenha(usuario.getNmSenha());
+        usuario.setNivelUsuario(usuario.getNivelUsuario());
         return usuario;
     }
 
     public List<Usuario> findAll() {return  this.usuarioRepository.findAll();}
 
+    @Override
+    public UserDetails loadUserByUsername(String nmLogin) throws UsernameNotFoundException {
+        return usuarioRepository.findByLogin(nmLogin);
+    }
 }
