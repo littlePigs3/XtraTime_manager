@@ -35,6 +35,10 @@ public class UsuarioService implements UserDetailsService {
 
     public List<Usuario> findAll() {return  this.usuarioRepository.findAll();}
 
+    public void delete(Long id) {
+        this.usuarioRepository.deleteById(id);
+    }
+
     @Override
     public UserDetails loadUserByUsername(String nmLogin) throws UsernameNotFoundException {
         return usuarioRepository.findByLogin(nmLogin);

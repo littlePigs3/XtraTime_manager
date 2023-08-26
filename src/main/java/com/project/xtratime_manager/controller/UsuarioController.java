@@ -27,6 +27,11 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioAtualizado).getBody();
     }
 
+    @DeleteMapping
+    public void delete(@PathVariable("id") Long id) {
+        this.usuarioService.delete(id);
+    }
+
     @GetMapping
     public List<Usuario> findAll() {
         return this.usuarioService.findAll();
